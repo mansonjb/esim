@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0b1020;
+  --color-ink-soft: #1c2438;
+  --color-muted: #5b6478;
+  --color-line: #e6e8ef;
+  --color-paper: #ffffff;
+  --color-canvas: #f7f8fc;
+
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-500: #4f46e5;
+  --color-brand-600: #4338ca;
+  --color-brand-700: #3730a3;
+
+  --color-accent-50: #ecfdf5;
+  --color-accent-100: #d1fae5;
+  --color-accent-500: #10b981;
+  --color-accent-600: #059669;
+
+  --color-amber-soft: #fef3c7;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+
+  --radius-card: 16px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.container-x {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.card {
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+}
+
+.prose-tight p {
+  line-height: 1.7;
+}
+
+/* faq native accordion polish */
+details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* long-form article typography */
+.article {
+  color: var(--color-ink-soft);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+.article > p {
+  margin-block: 1.1rem;
+  color: var(--color-muted);
+}
+.article > h2 {
+  margin-top: 2.2rem;
+  margin-bottom: 0.6rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+.article > h3 {
+  margin-top: 1.6rem;
+  margin-bottom: 0.4rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+.article > ul {
+  margin-block: 1.1rem;
+  padding-left: 1.25rem;
+  list-style: disc;
+  color: var(--color-muted);
+}
+.article > ul > li {
+  margin-block: 0.4rem;
+}
+.article a {
+  color: var(--color-brand-600);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.article strong {
+  color: var(--color-ink-soft);
+  font-weight: 700;
+}
