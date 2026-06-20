@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DestinationSearch } from "@/components/DestinationSearch";
+import { WorldMap } from "@/components/WorldMap";
 import { ProviderCard } from "@/components/ProviderCard";
 import { Faq } from "@/components/Faq";
 import { JsonLd } from "@/components/JsonLd";
@@ -56,14 +57,18 @@ export default function HomePage() {
               Compare travel eSIMs and stop overpaying for data
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-muted">
-              Side-by-side prices from Airalo, Holafly, Saily, Nomad and Ubigi.
-              Real cost per gigabyte, unlimited options and the best-value pick
-              for every destination. Pick a country to get connected before you
-              land.
+              Side-by-side prices from Airalo, Holafly, Saily, Yesim, aloSIM and
+              more. Real cost per gigabyte, unlimited options and the best-value
+              pick for every destination. Pick a country to get connected before
+              you land.
             </p>
           </div>
 
-          <div className="mx-auto mt-9 max-w-3xl">
+          <div className="mt-12">
+            <WorldMap />
+          </div>
+
+          <div className="mx-auto mt-12 max-w-3xl">
             <DestinationSearch items={items} />
           </div>
 
