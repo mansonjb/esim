@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { DestinationSearch } from "@/components/DestinationSearch";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { allDestinationItems } from "@/lib/destinations";
 import { COUNTRIES } from "@/data/countries";
+import { FEATURED_REGION_SLUGS, getRegionPage } from "@/data/regions";
 import { pageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -32,6 +34,33 @@ export default function DestinationsPage() {
             Search {COUNTRIES.length} destinations and open any country to see a
             full, ranked comparison of every major eSIM provider.
           </p>
+        </div>
+      </section>
+
+      <section className="container-x pt-12">
+        <h2 className="text-sm font-semibold uppercase tracking-wider text-muted">
+          Browse by region
+        </h2>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {FEATURED_REGION_SLUGS.map((slug) => {
+            const r = getRegionPage(slug);
+            if (!r) return null;
+            return (
+              <Link
+                key={slug}
+                href={`/esim/region/${slug}`}
+                className="rounded-full border border-line bg-paper px-4 py-2 text-sm font-medium text-ink-soft transition-colors hover:border-brand-200 hover:text-brand-600"
+              >
+                {r.name === "global travel" ? "Global" : r.name}
+              </Link>
+            );
+          })}
+          <Link
+            href="/esim/region/global"
+            className="rounded-full border border-brand-200 bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-600 transition-colors hover:bg-brand-100"
+          >
+            🌍 Global eSIM
+          </Link>
         </div>
       </section>
 

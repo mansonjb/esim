@@ -13,6 +13,6 @@ export const SITE = {
 
 export const NAV = [
   { href: "/destinations", label: "Destinations" },
+  { href: "/compare", label: "Compare" },
   { href: "/providers", label: "Providers" },
-  { href: "/guides", label: "Guides" },
 ] as const;

@@ -24,22 +24,18 @@ const TEMPLATES: Record<ProviderSlug, Template[]> = {
   airalo: [
     { dataGb: 1, days: 7, base: 4.5, hotspot: true },
     { dataGb: 3, days: 30, base: 9, hotspot: true },
-    { dataGb: 5, days: 30, base: 13, hotspot: true },
     { dataGb: 10, days: 30, base: 19, hotspot: true },
     { dataGb: 20, days: 30, base: 32, hotspot: true },
   ],
   saily: [
     { dataGb: 1, days: 7, base: 3.99, hotspot: true },
     { dataGb: 3, days: 30, base: 8.99, hotspot: true },
-    { dataGb: 5, days: 30, base: 11.99, hotspot: true },
     { dataGb: 10, days: 30, base: 18.99, hotspot: true },
     { dataGb: 20, days: 30, base: 32.99, hotspot: true },
-    { dataGb: null, days: 30, base: 49.99, hotspot: false },
   ],
   nomad: [
     { dataGb: 1, days: 7, base: 4.0, hotspot: true },
     { dataGb: 3, days: 30, base: 9.0, hotspot: true },
-    { dataGb: 5, days: 30, base: 12.5, hotspot: true },
     { dataGb: 10, days: 30, base: 19.0, hotspot: true },
     { dataGb: 20, days: 30, base: 33.0, hotspot: true },
   ],
@@ -47,11 +43,28 @@ const TEMPLATES: Record<ProviderSlug, Template[]> = {
     { dataGb: 1, days: 7, base: 5.0, hotspot: true },
     { dataGb: 3, days: 30, base: 9.5, hotspot: true },
     { dataGb: 10, days: 30, base: 20.0, hotspot: true },
+    { dataGb: 20, days: 30, base: 35.0, hotspot: true },
+  ],
+  yesim: [
+    { dataGb: 1, days: 7, base: 4.49, hotspot: true },
+    { dataGb: 3, days: 30, base: 9.49, hotspot: true },
+    { dataGb: 10, days: 30, base: 18.49, hotspot: true },
+    { dataGb: 20, days: 30, base: 31.99, hotspot: true },
+  ],
+  alosim: [
+    { dataGb: 1, days: 7, base: 3.99, hotspot: true },
+    { dataGb: 3, days: 30, base: 8.49, hotspot: true },
+    { dataGb: 10, days: 30, base: 17.99, hotspot: true },
+    { dataGb: 20, days: 30, base: 30.99, hotspot: true },
+  ],
+  jetpac: [
+    { dataGb: 1, days: 7, base: 4.99, hotspot: true },
+    { dataGb: 3, days: 30, base: 9.99, hotspot: true },
+    { dataGb: 10, days: 30, base: 19.99, hotspot: true },
+    { dataGb: 20, days: 30, base: 33.99, hotspot: true },
   ],
   holafly: [
-    { dataGb: null, days: 5, base: 19, hotspot: true },
     { dataGb: null, days: 7, base: 27, hotspot: true },
-    { dataGb: null, days: 10, base: 34, hotspot: true },
     { dataGb: null, days: 15, base: 47, hotspot: true },
     { dataGb: null, days: 30, base: 69, hotspot: true },
   ],
@@ -172,3 +185,20 @@ export const BADGE_LABEL: Record<PlanBadge, string> = {
   "best-value": "Best value",
   "best-unlimited": "Best unlimited",
 };
+
+// A single representative plan for a provider in a country, used for the
+// side-by-side price face-off on comparison pages. Prefers the 10GB sweet-spot
+// plan, falling back to the provider's cheapest plan (covers unlimited-only
+// providers like Holafly).
+export function getProviderBenchmarkPlan(
+  countrySlug: string,
+  provider: ProviderSlug,
+): Plan | null {
+  const plans = getCountryPlans(countrySlug).filter(
+    (p) => p.provider === provider,
+  );
+  if (!plans.length) return null;
+  const tenGb = plans.find((p) => p.dataGb === 10);
+  if (tenGb) return tenGb;
+  return plans.reduce((a, b) => (b.price < a.price ? b : a));
+}

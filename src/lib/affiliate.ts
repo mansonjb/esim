@@ -19,6 +19,9 @@ const ENV_OVERRIDE: Partial<Record<ProviderSlug, string | undefined>> = {
   saily: process.env.NEXT_PUBLIC_AFF_SAILY,
   nomad: process.env.NEXT_PUBLIC_AFF_NOMAD,
   ubigi: process.env.NEXT_PUBLIC_AFF_UBIGI,
+  yesim: process.env.NEXT_PUBLIC_AFF_YESIM,
+  alosim: process.env.NEXT_PUBLIC_AFF_ALOSIM,
+  jetpac: process.env.NEXT_PUBLIC_AFF_JETPAC,
 };
 
 // Internal link used across the UI. Carries the destination ISO so the redirect

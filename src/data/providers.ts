@@ -5,7 +5,15 @@
 // the Nord affiliate platform, etc.) or set the matching env var, e.g.
 // NEXT_PUBLIC_AFF_AIRALO. See lib/affiliate.ts.
 
-export type ProviderSlug = "airalo" | "holafly" | "saily" | "nomad" | "ubigi";
+export type ProviderSlug =
+  | "airalo"
+  | "holafly"
+  | "saily"
+  | "nomad"
+  | "ubigi"
+  | "yesim"
+  | "alosim"
+  | "jetpac";
 
 export type PlanStyle = "data" | "unlimited";
 
@@ -115,6 +123,51 @@ export const PROVIDERS: Provider[] = [
     pros: ["Reliable premium networks", "Good for frequent travel", "Monthly plans"],
     cons: ["Interface feels dated", "Rarely the cheapest"],
     features: { hotspot: true, topup: true, instantQr: true, support247: false },
+    styles: ["data"],
+  },
+  {
+    slug: "yesim",
+    name: "Yesim",
+    url: "https://yesim.app",
+    affiliateUrl: "https://yesim.app",
+    rating: 4.2,
+    coverage: 150,
+    tagline: "Flexible plans, pay-as-you-go option",
+    blurb:
+      "Tiered data plans plus an unlimited option and a pay-as-you-go mode that bills only for what you use. Solid mid-range value and one of the better affiliate payouts in the market.",
+    pros: ["Pay-as-you-go available", "Unlimited option", "Good regional packs"],
+    cons: ["Smaller brand recognition", "App can feel busy"],
+    features: { hotspot: true, topup: true, instantQr: true, support247: true },
+    styles: ["data", "unlimited"],
+  },
+  {
+    slug: "alosim",
+    name: "aloSIM",
+    url: "https://alosim.com",
+    affiliateUrl: "https://alosim.com",
+    rating: 4.3,
+    coverage: 200,
+    tagline: "Simple, cheap, no-frills data",
+    blurb:
+      "A straightforward marketplace with low prices across 200+ destinations. No bells and whistles, just cheap data bundles and an easy app, which makes it a reliable budget pick.",
+    pros: ["Very competitive prices", "Wide coverage", "Discount codes for users"],
+    cons: ["Fewer premium features", "Tracking is web-only"],
+    features: { hotspot: true, topup: true, instantQr: true, support247: false },
+    styles: ["data"],
+  },
+  {
+    slug: "jetpac",
+    name: "Jetpac",
+    url: "https://www.jetpacglobal.com",
+    affiliateUrl: "https://www.jetpacglobal.com",
+    rating: 4.2,
+    coverage: 150,
+    tagline: "Data plus travel perks",
+    blurb:
+      "Travel-focused eSIM that bundles data with extras like airport lounge passes and travel rewards. Prices sit slightly above the budget brands but the perks add real value for frequent flyers.",
+    pros: ["Travel perks and rewards", "Clean onboarding", "Reliable networks"],
+    cons: ["Not the cheapest", "Smaller country list than Airalo"],
+    features: { hotspot: true, topup: true, instantQr: true, support247: true },
     styles: ["data"],
   },
 ];

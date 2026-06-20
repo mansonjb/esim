@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/site";
 import { COUNTRIES } from "@/data/countries";
 import { PROVIDERS } from "@/data/providers";
+import { REGION_PAGES } from "@/data/regions";
+import { MATCHUPS, matchupSlug } from "@/data/comparisons";
 import { GUIDES } from "@/lib/guides";
 
 const LAST_MODIFIED = "2026-06-20";
@@ -25,6 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${base}/compare`,
+      lastModified: at,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${base}/guides`,
       lastModified: at,
       changeFrequency: "monthly",
@@ -37,6 +45,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: at,
     changeFrequency: "weekly",
     priority: 0.8,
+  }));
+
+  const regions: MetadataRoute.Sitemap = REGION_PAGES.map((r) => ({
+    url: `${base}/esim/region/${r.slug}`,
+    lastModified: at,
+    changeFrequency: "weekly",
+    priority: 0.7,
+  }));
+
+  const comparisons: MetadataRoute.Sitemap = MATCHUPS.map((m) => ({
+    url: `${base}/compare/${matchupSlug(m)}`,
+    lastModified: at,
+    changeFrequency: "monthly",
+    priority: 0.7,
   }));
 
   const providers: MetadataRoute.Sitemap = PROVIDERS.map((p) => ({
@@ -53,5 +75,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [...core, ...countries, ...providers, ...guides];
+  return [
+    ...core,
+    ...countries,
+    ...regions,
+    ...comparisons,
+    ...providers,
+    ...guides,
+  ];
 }

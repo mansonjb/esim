@@ -13,6 +13,7 @@ import { AffiliateButton } from "@/components/AffiliateButton";
 import { JsonLd } from "@/components/JsonLd";
 import { usd } from "@/lib/format";
 import { allDestinationItems } from "@/lib/destinations";
+import { regionToSlug } from "@/data/regions";
 import {
   pageMetadata,
   breadcrumbJsonLd,
@@ -278,9 +279,17 @@ export default async function CountryPage({
         {/* Related */}
         {relatedItems.length > 0 && (
           <section>
-            <h2 className="text-xl font-bold tracking-tight text-ink">
-              More eSIM destinations in {country.region}
-            </h2>
+            <div className="flex items-end justify-between gap-4">
+              <h2 className="text-xl font-bold tracking-tight text-ink">
+                More eSIM destinations in {country.region}
+              </h2>
+              <Link
+                href={`/esim/region/${regionToSlug(country.region)}`}
+                className="shrink-0 text-sm font-semibold text-brand-600 hover:text-brand-700"
+              >
+                View all →
+              </Link>
+            </div>
             <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {relatedItems.map((item) => (
                 <CountryCard key={item.slug} item={item} />

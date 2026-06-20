@@ -36,7 +36,7 @@ export default function ProvidersPage() {
             Best travel eSIM providers, compared
           </h1>
           <p className="mt-2 max-w-2xl text-muted">
-            The five brands we track across every destination. Each is strong at
+            The brands we track across every destination. Each is strong at
             something different, whether that is coverage, rock-bottom prices or
             unlimited data.
           </p>

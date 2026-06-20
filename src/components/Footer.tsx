@@ -54,33 +54,41 @@ export function Footer() {
 
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-wider text-muted">
-              Learn
+              Explore
             </h3>
             <ul className="mt-4 space-y-2 text-sm">
               <li>
+                <Link href="/compare" className="text-ink-soft hover:text-brand-600">
+                  Compare providers
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/esim/region/europe"
+                  className="text-ink-soft hover:text-brand-600"
+                >
+                  Europe eSIM
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/esim/region/asia"
+                  className="text-ink-soft hover:text-brand-600"
+                >
+                  Asia eSIM
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/esim/region/global"
+                  className="text-ink-soft hover:text-brand-600"
+                >
+                  Global eSIM
+                </Link>
+              </li>
+              <li>
                 <Link href="/guides" className="text-ink-soft hover:text-brand-600">
                   All guides
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/guides/what-is-an-esim"
-                  className="text-ink-soft hover:text-brand-600"
-                >
-                  What is an eSIM?
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/guides/esim-vs-roaming"
-                  className="text-ink-soft hover:text-brand-600"
-                >
-                  eSIM vs roaming
-                </Link>
-              </li>
-              <li>
-                <Link href="/destinations" className="text-ink-soft hover:text-brand-600">
-                  Browse all destinations
                 </Link>
               </li>
             </ul>

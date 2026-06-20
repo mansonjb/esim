@@ -5,8 +5,10 @@ import { ProviderCard } from "@/components/ProviderCard";
 import { Faq } from "@/components/Faq";
 import { JsonLd } from "@/components/JsonLd";
 import { allDestinationItems, popularDestinationItems } from "@/lib/destinations";
-import { PROVIDERS } from "@/data/providers";
+import { PROVIDERS, getProvider } from "@/data/providers";
 import { COUNTRIES } from "@/data/countries";
+import { MATCHUPS, matchupSlug } from "@/data/comparisons";
+import { FEATURED_REGION_SLUGS, getRegionPage } from "@/data/regions";
 import { SITE } from "@/lib/site";
 import { pageMetadata, faqJsonLd } from "@/lib/seo";
 
@@ -125,8 +127,8 @@ export default function HomePage() {
                 The providers we compare
               </h2>
               <p className="mt-2 max-w-xl text-muted">
-                We track the five eSIM brands that consistently offer the best
-                coverage, prices or unlimited data.
+                We track the leading eSIM brands that consistently offer the
+                best coverage, prices or unlimited data.
               </p>
             </div>
             <Link
@@ -145,6 +147,65 @@ export default function HomePage() {
             <Link href="/providers" className="text-sm font-semibold text-brand-600">
               Compare all providers →
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Comparisons + regions */}
+      <section className="container-x py-16">
+        <div className="grid gap-10 lg:grid-cols-2">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight text-ink">
+              Popular comparisons
+            </h2>
+            <p className="mt-2 text-muted">
+              Settle the matchups travellers search most.
+            </p>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              {MATCHUPS.slice(0, 6).map((m) => {
+                const a = getProvider(m.a)!;
+                const b = getProvider(m.b)!;
+                return (
+                  <Link
+                    key={matchupSlug(m)}
+                    href={`/compare/${matchupSlug(m)}`}
+                    className="rounded-card border border-line bg-paper px-4 py-3 text-sm font-semibold text-ink-soft transition-colors hover:border-brand-200 hover:text-brand-600"
+                  >
+                    {a.name} <span className="text-muted">vs</span> {b.name}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight text-ink">
+              Browse by region
+            </h2>
+            <p className="mt-2 text-muted">
+              One trip, many countries? Start with a region.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {FEATURED_REGION_SLUGS.slice(0, 10).map((slug) => {
+                const r = getRegionPage(slug);
+                if (!r) return null;
+                return (
+                  <Link
+                    key={slug}
+                    href={`/esim/region/${slug}`}
+                    className="rounded-full border border-line bg-paper px-4 py-2 text-sm font-medium text-ink-soft transition-colors hover:border-brand-200 hover:text-brand-600"
+                  >
+                    {r.name}
+                  </Link>
+                );
+              })}
+              <Link
+                href="/esim/region/global"
+                className="rounded-full border border-brand-200 bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-600 hover:bg-brand-100"
+              >
+                🌍 Global
+              </Link>
+            </div>
           </div>
         </div>
       </section>
