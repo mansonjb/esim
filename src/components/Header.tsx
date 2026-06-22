@@ -7,12 +7,12 @@ function Logo() {
       <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-600 text-white">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
           <path
-            d="M5 13a11 11 0 0 1 14 0M8 16.5a6 6 0 0 1 8 0"
+            d="M12 3 L19.5 19.5 L12 15.4 L4.5 19.5 Z"
+            fill="currentColor"
             stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
+            strokeWidth="1.2"
+            strokeLinejoin="round"
           />
-          <circle cx="12" cy="20" r="1.4" fill="currentColor" />
         </svg>
       </span>
       <span className="text-[17px] font-bold tracking-tight text-ink">
